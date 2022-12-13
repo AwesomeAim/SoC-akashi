@@ -234,6 +234,8 @@ void AOClient::cmdGetAreas(int argc, QStringList argv)
         }
     }
     sendServerMessage(l_entries.join("\n"));
+    QString l_sender_name = m_ooc_name;
+    sendServerMessageArea(l_sender_name + " has used /getareas.");
 }
 
 void AOClient::cmdGetArea(int argc, QStringList argv)
@@ -243,6 +245,8 @@ void AOClient::cmdGetArea(int argc, QStringList argv)
 
     QStringList l_entries = buildAreaList(m_current_area);
     sendServerMessage(l_entries.join("\n"));
+    QString l_sender_name = m_ooc_name;
+    sendServerMessageArea(l_sender_name + " has used /getarea.");
 }
 
 void AOClient::cmdArea(int argc, QStringList argv)
