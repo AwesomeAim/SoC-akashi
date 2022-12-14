@@ -92,6 +92,8 @@ const QMap<QString, AOClient::CommandInfo> AOClient::COMMANDS{
     {"allow_blankposting", {{ACLRole::MODCHAT}, 0, &AOClient::cmdAllowBlankposting}},
     {"gimp", {{ACLRole::MUTE}, 1, &AOClient::cmdGimp}},
     {"ungimp", {{ACLRole::MUTE}, 1, &AOClient::cmdUnGimp}},
+    {"typo", {{ACLRole::MUTE}, 1, &AOClient::cmdTypo}},
+    {"untypo", {{ACLRole::MUTE}, 1, &AOClient::cmdUnTypo}},
     {"baninfo", {{ACLRole::BAN}, 1, &AOClient::cmdBanInfo}},
     {"testify", {{ACLRole::CM}, 0, &AOClient::cmdTestify}},
     {"testimony", {{ACLRole::NONE}, 0, &AOClient::cmdTestimony}},
