@@ -151,6 +151,30 @@ AOPacket *PacketMS::validateIcPacket(AOClient &client) const
         QString l_disemvoweled_message = l_incoming_msg.remove(QRegExp("[AEIOUaeiou]"));
         l_incoming_msg = l_disemvoweled_message;
     }
+    
+    if (client.m_is_typoed) {
+        QStringList l_parts = l_incoming_msg.split("");
+        std::mt19937 urng(time(0));
+        auto real_rand = std::bind(std::uniform_real_distribution<double>(0,1),
+                                   std::mt19937(urng));
+        float chance = 0.15;
+        float increment = 0.1;
+
+        while (real_rand() > chance) {
+            int target = real_rand()*(l_parts.length()-1);
+            if (l_parts[target].isUpper() && l_parts[target+1].isLower()) {
+                l_parts[target] = l_parts[target].toLower();
+                l_parts[target+1] = l_parts[target+1].toUpper();
+            } else if (l_parts[target].isLower() && l_parts[target+1].isUpper()) {
+                l_parts[target] = l_parts[target].toUpper();
+                l_parts[target+1] = l_parts[target+1].toLower();
+            }
+            l_parts.swapItemsAt(target, target+1);
+            chance += increment;
+        }
+
+        l_incoming_msg = l_parts.join("");
+    }
 
     client.m_last_message = l_incoming_msg;
     l_args.append(l_incoming_msg);
