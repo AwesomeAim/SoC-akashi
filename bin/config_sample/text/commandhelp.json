@@ -494,6 +494,20 @@
    },
    {
       "names": [
+         "typo"
+      ],
+      "usage":"/typo <ID>",
+      "text":"Adds typos to the target client's messages. Takes the client id as the only argument."
+   },
+   {
+      "names": [
+         "untypo"
+      ],
+      "usage":"/untypo <ID>",
+      "text":"Allows a typoed client to speak normally. The user needs to be typoed to be untypoed. Takes the client id as the only argument."
+   },
+   {
+      "names": [
          "baninfo"
       ],
       "usage":"/baninfo <BanID>",
