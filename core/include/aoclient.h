@@ -273,7 +273,12 @@ class AOClient : public QObject
      * @brief If true, the client's in-character messages will be overwritten by a randomly picked predetermined message.
      */
     bool m_is_gimped = false;
-
+    
+    /**
+     * @brief If true, the client's in-character messages will have typos added.
+     */
+    bool m_is_typoed = false;
+    
     /**
      * @brief If true, the client will be marked as AFK in /getarea. Automatically applied when a configurable
      * amount of time has passed since the last interaction, or manually applied by /afk.
@@ -1572,6 +1577,24 @@ class AOClient : public QObject
      */
     void cmdUnGimp(int argc, QStringList argv);
 
+    /**
+     * @brief Adds typos to the target client's messages.
+     *
+     * @details The only argument is the **the target's ID** whom the client wants to typo.
+     *
+     * @iscommand
+     */
+    void cmdTypo(int argc, QStringList argv);
+
+    /**
+     * @brief Allows a typoed client to speak normally.
+     *
+     * @details The only argument is **the target's ID** whom the client wants to untypo.
+     *
+     * @iscommand
+     */
+    void cmdUnTypo(int argc, QStringList argv);
+    
     /**
      * @brief Removes all vowels from a target client's in-character messages.
      *
