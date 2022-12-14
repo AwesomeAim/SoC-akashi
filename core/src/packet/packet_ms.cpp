@@ -169,7 +169,9 @@ AOPacket *PacketMS::validateIcPacket(AOClient &client) const
                 l_parts[target] = l_parts[target].toUpper();
                 l_parts[target+1] = l_parts[target+1].toLower();
             }
-            l_parts.swapItemsAt(target, target+1);
+            QString temp = l_parts[target];
+            l_parts[target] = l_parts[target+1];
+            l_parts[target+1] = temp;
             chance += increment;
         }
 
