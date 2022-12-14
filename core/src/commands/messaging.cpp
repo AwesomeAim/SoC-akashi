@@ -251,6 +251,58 @@ void AOClient::cmdUnGimp(int argc, QStringList argv)
     l_target->m_is_gimped = false;
 }
 
+void AOClient::cmdTypo(int argc, QStringList argv)
+{
+    Q_UNUSED(argc);
+
+    bool conv_ok = false;
+    int l_uid = argv[0].toInt(&conv_ok);
+    if (!conv_ok) {
+        sendServerMessage("Invalid user ID.");
+        return;
+    }
+
+    AOClient *l_target = server->getClientByID(l_uid);
+
+    if (l_target == nullptr) {
+        sendServerMessage("No client with that ID found.");
+        return;
+    }
+
+    if (l_target->m_is_typoed)
+        sendServerMessage("That player is already full of typos!");
+    else {
+        sendServerMessage("That player will now make typos.");
+    }
+    l_target->m_is_typoed = true;
+}
+
+void AOClient::cmdUnTypo(int argc, QStringList argv)
+{
+    Q_UNUSED(argc);
+
+    bool conv_ok = false;
+    int l_uid = argv[0].toInt(&conv_ok);
+    if (!conv_ok) {
+        sendServerMessage("Invalid user ID.");
+        return;
+    }
+
+    AOClient *l_target = server->getClientByID(l_uid);
+
+    if (l_target == nullptr) {
+        sendServerMessage("No client with that ID found.");
+        return;
+    }
+
+    if (!(l_target->m_is_typoed))
+        sendServerMessage("That player is typo-free!");
+    else {
+        sendServerMessage("That player is now free from typos.");
+    }
+    l_target->m_is_typoed = false;
+}
+
 void AOClient::cmdDisemvowel(int argc, QStringList argv)
 {
     Q_UNUSED(argc);
