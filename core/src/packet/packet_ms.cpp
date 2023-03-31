@@ -162,7 +162,10 @@ AOPacket *PacketMS::validateIcPacket(AOClient &client) const
 
         while (real_rand() > chance) {
             int target = real_rand()*(l_parts.length()-1);
-            if (l_parts[target].isUpper() && l_parts[target+1].isLower()) {
+            if ((l_parts[target].isUpper() && l_parts[target].isLower())
+                || (l_parts[target+1].isUpper() && l_parts[target+1].isLower())) {
+                //spaces are counted here for some reason
+            } else if (l_parts[target].isUpper() && l_parts[target+1].isLower()) {
                 l_parts[target] = l_parts[target].toLower();
                 l_parts[target+1] = l_parts[target+1].toUpper();
             } else if (l_parts[target].isLower() && l_parts[target+1].isUpper()) {
