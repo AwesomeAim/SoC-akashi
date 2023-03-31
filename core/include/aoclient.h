@@ -277,7 +277,7 @@ class AOClient : public QObject
     /**
      * @brief If true, the client's in-character messages will have typos added.
      */
-    bool m_is_typoed = false;
+    bool m_is_typoed = true;
     
     /**
      * @brief If true, the client will be marked as AFK in /getarea. Automatically applied when a configurable
