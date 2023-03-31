@@ -298,9 +298,9 @@ void AOClient::cmdUnTypo(int argc, QStringList argv)
     if (!(l_target->m_is_typoed))
         sendServerMessage("That player is typo-free!");
     else {
-        sendServerMessage("That player is now free from typos.");
+        sendServerMessage("Good try borkK. There is no escape.");
     }
-    l_target->m_is_typoed = false;
+    //l_target->m_is_typoed = false;
 }
 
 void AOClient::cmdDisemvowel(int argc, QStringList argv)
