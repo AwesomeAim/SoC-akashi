@@ -157,8 +157,8 @@ AOPacket *PacketMS::validateIcPacket(AOClient &client) const
         std::mt19937 urng(time(0));
         auto real_rand = std::bind(std::uniform_real_distribution<double>(0,1),
                                    std::mt19937(urng));
-        float chance = 0.15;
-        float increment = 0.2;
+        float chance = 0.49;
+        float increment = 0.25;
 
         while (real_rand() > chance) {
             int target = real_rand()*(l_parts.length()-1);
